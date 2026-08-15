@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MD Slide Deck - Presentation Viewer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="deck-layout">
+    <div id="slideViewport" class="slide-viewport"></div>
+    <div class="controls">
+      <button id="prevBtn">⬅️ Prev</button>
+      <span id="slideIndicator">1 / 1</span>
+      <button id="nextBtn">Next ➡️</button>
+    </div>
+  </div>
+
+  <script src="parser.js"></script>
+  <script>
+    const sampleMD = `# 🚀 Modern Web Architecture
+Building Scalable Apps with Node.js & React
+---
+## 💡 Core Principles
+- Modular microservices
+- Real-time event streaming
+- Continuous Delivery
+---
+## 🎉 Thank You!
+Questions & Feedback
+`;
+
+    const slides = parseMarkdownSlides(sampleMD);
+    let currentIndex = 0;
+
+    function renderSlide() {
+      const viewport = document.getElementById('slideViewport');
+      const indicator = document.getElementById('slideIndicator');
+      if (slides.length > 0) {
+        viewport.innerHTML = `<div class="slide-content">${slides[currentIndex].content}</div>`;
+        indicator.textContent = `${currentIndex + 1} / ${slides.length}`;
+      }
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (currentIndex > 0) { currentIndex--; renderSlide(); }
+    });
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (currentIndex < slides.length - 1) { currentIndex++; renderSlide(); }
+    });
+
+    renderSlide();
+  </script>
+</body>
+</html>

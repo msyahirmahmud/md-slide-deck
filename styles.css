@@ -1,0 +1,8 @@
+body { margin: 0; background: #090d16; color: #fff; font-family: system-ui, sans-serif; height: 100vh; display: flex; justify-content: center; align-items: center; }
+.deck-layout { width: 800px; height: 500px; background: #111827; border: 1px solid #1f2937; border-radius: 12px; display: flex; flex-direction: column; position: relative; }
+.slide-viewport { flex: 1; display: flex; justify-content: center; align-items: center; padding: 40px; text-align: center; }
+.slide-content h1 { font-size: 2.2rem; color: #3b82f6; margin-bottom: 16px; }
+.slide-content h2 { font-size: 1.6rem; color: #10b981; }
+.controls { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-top: 1px solid #1f2937; }
+button { background: #2563eb; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+button:hover { background: #1d4ed8; }
