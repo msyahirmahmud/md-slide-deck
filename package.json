@@ -1,0 +1,12 @@
+{
+  "name": "md-slide-deck",
+  "version": "1.0.0",
+  "description": "Markdown to HTML Presentation Deck Converter with interactive slide controls",
+  "main": "parser.js",
+  "scripts": {
+    "test": "node --test tests/deck.test.js",
+    "start": "npx serve ."
+  },
+  "author": "Syahir Mahmud",
+  "license": "MIT"
+}
