@@ -1,6 +1,6 @@
 const assert = require('assert');
 const { test, describe } = require('node:test');
-const { parseMarkdownSlides } = require('../parser.js');
+const { parseMarkdownSlides, generateFullscreenScript } = require('../parser.js');
 
 describe('Markdown Slide Deck Unit Tests', () => {
   test('splits markdown by horizontal rule delimiter', () => {
@@ -9,6 +9,11 @@ describe('Markdown Slide Deck Unit Tests', () => {
     assert.strictEqual(slides.length, 2);
     assert.strictEqual(slides[0].title, 'Slide 1');
     assert.strictEqual(slides[1].title, 'Slide 2');
+  });
+
+  test('generateFullscreenScript outputs presentation script', () => {
+    const script = generateFullscreenScript();
+    assert.strictEqual(script.includes("requestFullscreen"), true);
   });
 
   test('extracts speaker notes marked with Note: prefix', () => {

@@ -38,6 +38,20 @@ function parseMarkdownSlides(markdownContent) {
   });
 }
 
+function generateFullscreenScript() {
+  return `
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'f' || e.key === 'F') {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen();
+        } else {
+          document.exitFullscreen();
+        }
+      }
+    });
+  `;
+}
+
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { parseMarkdownSlides };
+  module.exports = { parseMarkdownSlides, generateFullscreenScript };
 }
