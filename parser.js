@@ -13,8 +13,16 @@ function parseMarkdownSlides(markdownContent) {
     const titleMatch = trimmed.match(/^#\s+(.+)$/m);
     const title = titleMatch ? titleMatch[1] : `Slide ${index + 1}`;
 
+    // Extract speaker notes if any (e.g. Note: Remember to emphasize key metrics)
+    let notes = [];
+    const notesMatch = trimmed.match(/Note:\s*(.+)$/gm);
+    if (notesMatch) {
+      notes = notesMatch.map(n => n.replace(/^Note:\s*/i, '').trim());
+    }
+
     // Convert basic markdown tags
     let html = trimmed
+      .replace(/Note:\s*(.+)$/gm, '') // Strip notes from main slide content
       .replace(/^#\s+(.+)$/gm, '<h1>$1</h1>')
       .replace(/^##\s+(.+)$/gm, '<h2>$2</h2>')
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
@@ -24,7 +32,8 @@ function parseMarkdownSlides(markdownContent) {
     return {
       index,
       title,
-      content: html
+      content: html,
+      speakerNotes: notes
     };
   });
 }

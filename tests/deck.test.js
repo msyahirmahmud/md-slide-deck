@@ -16,6 +16,13 @@ describe('Markdown Slide Deck Unit Tests', () => {
     assert.strictEqual(script.includes("requestFullscreen"), true);
   });
 
+  test('extracts speaker notes marked with Note: prefix', () => {
+    const md = "# Slide Title\nSlide Content\nNote: Present metrics clearly";
+    const slides = parseMarkdownSlides(md);
+    assert.strictEqual(slides[0].speakerNotes.length, 1);
+    assert.strictEqual(slides[0].speakerNotes[0], 'Present metrics clearly');
+  });
+
   test('converts basic markdown formatting tags', () => {
     const md = "# Title\n**Bold Text** and *Italic*";
     const slides = parseMarkdownSlides(md);
